@@ -1,0 +1,31 @@
+const readline = require("readline");
+
+const rl = readline.createInterface ({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const perguntarTabuada = () => {
+    rl.question("Qual tabuada você quer? ", (input) => {
+        let numero = Number(input);
+
+        if (isNaN(numero)) {
+            console.log("Por favor, insira um número.");
+        } else {
+            console.log(`Tabuada do número ${numero}:`);
+            for (let i = 1; i <= 10; i++) {
+                console.log(`${numero} x ${i} = ${numero * i}`);
+            }
+        }
+        rl.question("Você quer outra tabuada? (sim/não): ", (resposta) => {
+            if (resposta.toLowerCase() === "sim") {
+                perguntarTabuada();
+            } else {
+                console.log("Obrigado por usar o programa!");
+                rl.close();
+            }
+        });
+    });
+};
+
+perguntarTabuada();
